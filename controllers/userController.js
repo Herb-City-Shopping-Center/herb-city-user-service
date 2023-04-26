@@ -195,10 +195,53 @@ const removeCartItem = asyncHandler(async (req, res) => {
   }
 });
 
+const getOrdersByUserId = asyncHandler(async (req,res)=>{
+  const { userId } = req.body;
+
+  if (!userId) {
+    res.send(400);
+    throw new error("No Customer ID!!!");
+  }
+
+  const orderList = await Order.find({ customerId: { $in: userId } });
+
+  if (orderList) {
+    res.send(orderList);
+    console.log(orderList);
+  } else {
+    console.log("Invalid user Id for fetch orders".red.bold);
+    res.status(401);
+    throw new error("Invalid user Id for fetch orders");
+  }
+})
+
+const deleteOrder = asyncHandler(async (req, res) => {
+  const { orderId } = req.body;
+console.log(orderId);
+  if (!orderId) {
+    res.status(400);
+    throw new error("Required data not received into backend request!!!");
+  } else {
+    const deleteOrder = await Order.findOneAndDelete({ _id: orderId });
+
+    if (deleteOrder) {
+      res.status(201).json({
+        _id: deleteOrder._id,
+        productName: deleteOrder.productTitle,
+      });
+    } else {
+      console.log("Errorrrrrrrrrrrrrrr");
+      res.status(400);
+      throw new error("Product not deleted !!!");
+    }
+  }
+});
 module.exports = {
   placeOrder,
   addCart,
   getCartList,
   removeCartItem,
   getAllProducts,
+  getOrdersByUserId,
+  deleteOrder,
 };
