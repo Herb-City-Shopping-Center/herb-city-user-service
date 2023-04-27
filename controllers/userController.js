@@ -236,6 +236,32 @@ console.log(orderId);
     }
   }
 });
+
+const searchProduct = asyncHandler(async (req, res) => {
+  //getting keyword
+  const keyword = req.query.search
+    ? {
+        $or: [
+          { productTitle: { $regex: req.query.search, $options: "i" } }, //assign keyword find in productTitle
+          { categoryName: { $regex: req.query.search, $options: "i" } }, //assign keyword find in categoryName
+          { description: { $regex: req.query.search, $options: "i" } }, //assign keyword find in description
+        ],
+      }
+    : {};
+
+  //find user in databse by keyword
+  const product = await Product.find(keyword);
+
+  if(product){
+    console.log(product);
+  }
+  else{
+  console.log("No items.............");
+  }
+  //send data to frontend
+  res.send(product);
+});
+
 module.exports = {
   placeOrder,
   addCart,
@@ -243,5 +269,6 @@ module.exports = {
   removeCartItem,
   getAllProducts,
   getOrdersByUserId,
+  searchProduct,
   deleteOrder,
 };

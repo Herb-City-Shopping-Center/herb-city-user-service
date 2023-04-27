@@ -8,6 +8,7 @@ const {
   getAllProducts,
   getOrdersByUserId,
   deleteOrder,
+  searchProduct,
 } = require("../controllers/userController");
 removeCartItem;
 
@@ -18,5 +19,6 @@ router.route("/removeCartItem").post(removeCartItem);
 router.route("/getAllProducts").post(getAllProducts);
 router.route("/getOrdersByUserId").post(getOrdersByUserId);
 router.route("/deleteOrder").post(deleteOrder);
+router.route("/searchProduct").get(searchProduct);
 
 module.exports = router;
