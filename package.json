@@ -19,6 +19,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^4.13.0",
     "mongoose": "^6.8.2",
+    "nodemon": "^2.0.22",
     "stripe": "^12.2.0",
     "terminal-kit": "^3.0.0"
   }

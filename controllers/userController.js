@@ -50,7 +50,7 @@ const placeOrder = asyncHandler(async (req, res) => {
     console.log(`${index} - `, shop._id);
     orderCountInShop = Number(shop.ordersCount) + 1;
     newPayment = Number(shop.payment) + 250;//add 250 lkr for each order as seller revenue
-
+ 
     console.log(orderCountInShop);
 
     Shop.findByIdAndUpdate(
@@ -89,111 +89,111 @@ const placeOrder = asyncHandler(async (req, res) => {
   });
 });
 
-const addCart = asyncHandler(async (req, res) => {
-  const {
-    productId,
-    productImage,
-    productPrice,
-    productTitle,
-    customerId,
-    shopId,
-    quantity,
-  } = req.body;
+// const addCart = asyncHandler(async (req, res) => {
+//   const {
+//     productId,
+//     productImage,
+//     productPrice,
+//     productTitle,
+//     customerId,
+//     shopId,
+//     quantity,
+//   } = req.body;
 
-  if (
-    !productId ||
-    !productImage ||
-    !productPrice ||
-    !productTitle ||
-    !customerId ||
-    !shopId ||
-    !quantity
-  ) {
-    res.send(400);
-    throw new error("Please enter all the fields!!!");
-  }
+//   if (
+//     !productId ||
+//     !productImage ||
+//     !productPrice ||
+//     !productTitle ||
+//     !customerId ||
+//     !shopId ||
+//     !quantity
+//   ) {
+//     res.send(400);
+//     throw new error("Please enter all the fields!!!");
+//   }
 
-  const cart = await Cart.create({
-    productId,
-    productImage,
-    productPrice,
-    productTitle,
-    customerId,
-    shopId,
-    quantity,
-  });
+//   const cart = await Cart.create({
+//     productId,
+//     productImage,
+//     productPrice,
+//     productTitle,
+//     customerId,
+//     shopId,
+//     quantity,
+//   });
 
-  if (cart) {
-    console.log("Added to cart!!!".green.bold);
-    res.status(201).json({
-      _id: cart._id,
-      productId: cart.productId,
-      productImage: cart.productImage,
-      productPrice: cart.productPrice,
-      productTitle: cart.productTitle,
-      customerId: cart.customerId,
-      shopId: cart.shopId,
-      quantity: cart.quantity,
-    });
-  } else {
-    console.log("Failed to adding cart !!!".red.bold);
-    res.status(400).json({
-      error: "Failed to adding cart !!!",
-    });
-    throw new error("Failed to adding cart !!!");
-  }
-});
+//   if (cart) {
+//     console.log("Added to cart!!!".green.bold);
+//     res.status(201).json({
+//       _id: cart._id,
+//       productId: cart.productId,
+//       productImage: cart.productImage,
+//       productPrice: cart.productPrice,
+//       productTitle: cart.productTitle,
+//       customerId: cart.customerId,
+//       shopId: cart.shopId,
+//       quantity: cart.quantity,
+//     });
+//   } else {
+//     console.log("Failed to adding cart !!!".red.bold);
+//     res.status(400).json({
+//       error: "Failed to adding cart !!!",
+//     });
+//     throw new error("Failed to adding cart !!!");
+//   }
+// });
 
-const getCartList = asyncHandler(async (req, res) => {
-  const { customerId } = req.body;
+// const getCartList = asyncHandler(async (req, res) => {
+//   const { customerId } = req.body;
 
-  if (!customerId) {
-    res.send(400);
-    throw new error("No Customer ID!!!");
-  }
+//   if (!customerId) {
+//     res.send(400);
+//     throw new error("No Customer ID!!!");
+//   }
 
-  const cartList = await Cart.find({ customerId: { $in: customerId } });
+//   const cartList = await Cart.find({ customerId: { $in: customerId } });
 
-  if (cartList) {
-    res.send(cartList);
-    console.log(cartList);
-  } else {
-    console.log("Invalid shopId for fetch product".red.bold);
-    res.status(401);
-    throw new error("Invalid shopId for fetch product");
-  }
-});
+//   if (cartList) {
+//     res.send(cartList);
+//     console.log(cartList);
+//   } else {
+//     console.log("Invalid shopId for fetch product".red.bold);
+//     res.status(401);
+//     throw new error("Invalid shopId for fetch product");
+//   }
+// });
 
-const removeCartItem = asyncHandler(async (req, res) => {
-  const { id } = req.body;
+// const removeCartItem = asyncHandler(async (req, res) => {
+//   const { id } = req.body;
 
-  if (!id) {
-    console.log("Id is null".red.bold);
-    res.status(400).json({
-      error: "item id is null",
-    });
-    throw new error("Error while deleting item !!!");
-  } else {
-    try {
-      //find user by id and delete fron database
-      const cart = await Cart.findOneAndDelete({ _id: id });
+//   if (!id) {
+//     console.log("Id is null".red.bold);
+//     res.status(400).json({
+//       error: "item id is null",
+//     });
+//     throw new error("Error while deleting item !!!");
+//   } else {
+//     try {
+//       //find user by id and delete fron database
+//       const cart = await Cart.findOneAndDelete({ _id: id });
 
-      //send success response message to the frontend
-      if (cart) {
-        res.status(201).json({
-          _id: id,
-        });
-        console.log("Item deleted".red.bold);
-      }
-    } catch (error) {
-      //send error response message to the frontend
-      res.status(400).json({
-        error: "Fail to delete item !!!",
-      });
-      throw new error("Error while deleting item !!!" + error.message);
-    }
-  }
-});
+//       //send success response message to the frontend
+//       if (cart) {
+//         res.status(201).json({
+//           _id: id,
+//         });
+//         console.log("Item deleted".red.bold);
+//       }
+//     } catch (error) {
+//       //send error response message to the frontend
+//       res.status(400).json({
+//         error: "Fail to delete item !!!",
+//       });
+//       throw new error("Error while deleting item !!!" + error.message);
+//     }
+//   }
+// });
 
 const getOrdersByUserId = asyncHandler(async (req,res)=>{
   const { userId } = req.body;
@@ -262,13 +262,63 @@ const searchProduct = asyncHandler(async (req, res) => {
   res.send(product);
 });
 
+const getShopByShopId = asyncHandler(async(req,res) =>{
+  const { shopId } = req.body;
+
+  console.log(shopId);
+
+  if (!shopId) {
+    res.send(400);
+    throw new error("Please add shop Id!!!");
+  }
+
+  const shop = await Shop.findOne({ _id:shopId });
+
+  if (shop) {
+    console.log("Found!!!".green.bold);
+    res.status(201).json({
+      _id: shop._id,
+      userId: shop.userId,
+      shopName: shop.shopName,
+      shopDescription: shop.shopDescription,
+      shopAddress: shop.shopAddress,
+      ratings: shop.ratings,
+      shopImage: shop.shopImage,
+    });
+  } else {
+    console.log("Failed to Get Shop !!!".red.bold);
+    res.status(400).json({
+      error: "Failed to Get Shop !!!",
+    });
+    throw new error("Failed to Get Shop !!!");
+  }
+});
+
+const getProductbyShopId = asyncHandler(async(req,res)=>{
+  const { shopId } = req.body;
+
+  if (!shopId) {
+    res.send(400);
+    throw new error("No Shop ID!!!");
+  }
+
+  const productList = await Product.find({ shopId: { $in: shopId } });
+
+  if (productList) {
+    res.send(productList);
+  } else {
+    console.log("Invalid shop Id for fetch products".red.bold);
+    res.status(401);
+    throw new error("Invalid shop Id for fetch orders");
+  }
+})
+
 module.exports = {
   placeOrder,
-  addCart,
-  getCartList,
-  removeCartItem,
+  getShopByShopId,
   getAllProducts,
   getOrdersByUserId,
   searchProduct,
   deleteOrder,
+  getProductbyShopId,
 };
