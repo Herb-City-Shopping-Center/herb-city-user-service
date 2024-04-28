@@ -199,7 +199,7 @@ const getOrdersByUserId = asyncHandler(async (req,res)=>{
   const { userId } = req.body;
 
   if (!userId) {
-    res.send(400);
+    res.sendStatus(400);
     throw new error("No Customer ID!!!");
   }
 

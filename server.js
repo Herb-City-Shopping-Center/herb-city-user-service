@@ -12,7 +12,7 @@ dotenv.config();
 connectDB();
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5007;
 
 
 app.use(cors());
@@ -31,7 +31,7 @@ if (server) {
   console.log("Success".green.bold);
 }
 
-app.use("/api/user", userRoutes);
+app.use("/api/user", userRoutes); 
 
 app.use(errorHandler);
 app.use(notFound);
