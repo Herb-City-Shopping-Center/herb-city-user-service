@@ -1,11 +1,11 @@
 {
   "type": "external_account",
-  "audience": "//iam.googleapis.com/projects/609107042233/locations/global/workloadIdentityPools/herb-city-pool/providers/google-oauth",
+  "audience": "//iam.googleapis.com/projects/609107042233/locations/global/workloadIdentityPools/herb-city-identity-pool/providers/google-oauth-identity-provider",
   "subject_token_type": "urn:ietf:params:oauth:token-type:jwt",
   "token_url": "https://sts.googleapis.com/v1/token",
   "service_account_impersonation_url": "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/herb-city-user-service-image@herb-city.iam.gserviceaccount.com:generateAccessToken",
   "credential_source": {
-    "file": "google-cloudrun-docker.yaml",
+    "file": "google-cloudrun-docker.yml",
     "format": {
       "type": "json",
       "subject_token_field_name": "access_token"
