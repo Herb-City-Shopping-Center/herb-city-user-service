@@ -35,3 +35,5 @@ app.use("/api/user", userRoutes);
 
 app.use(errorHandler);
 app.use(notFound);
+
+module.exports= {app,server}

@@ -8,7 +8,7 @@ const { green } = require("colors");
 const getAllProducts = asyncHandler(async (req, res) => {
   const products = await Product.find();
 
-  if (products) {
+  if (products && products.length > 0) {
     console.log("Product fetched!!!".green.bold);
     //send data to frontend in json format
     res.status(201).json({
@@ -20,7 +20,7 @@ const getAllProducts = asyncHandler(async (req, res) => {
     res.status(400).json({
       error: "Failed to fetch products !!!",
     });
-    throw new error("Failed to fetch products !!!");
+    // throw new error("Failed to fetch products !!!");
   }
 });
 
