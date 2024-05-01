@@ -2,8 +2,14 @@ const request = require('supertest');
 const { app, server } = require('../server'); // Assuming your Express app is exported from app.js
 const { getAllProducts } = require('../controllers/userController');
 const Product = require('../models/productModal');
+const connectDB = require('../DB/db'); // Import the function to connect to the database
+const { default: mongoose } = require('mongoose');
 
 describe('getAllProducts', () => {
+
+    beforeAll(async () => {
+      await connectDB();
+    });
 
     test('should return status 400 if no products exist', async () => {
 
@@ -41,7 +47,9 @@ describe('getAllProducts', () => {
     });
 
     afterAll(async () => {
-        await server.close();
+        server.close();
+
+        await mongoose.disconnect()
       });
 });
   
