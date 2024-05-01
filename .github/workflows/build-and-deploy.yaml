@@ -1,4 +1,4 @@
-name: Deploy Nginx
+name: Deploy User Service
 
 on:
   push:
@@ -26,8 +26,8 @@ jobs:
         GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
       run: |
         gcloud auth configure-docker \us-west2-docker.pkg.dev
-        docker build -t us-west2-docker.pkg.dev/$GOOGLE_PROJECT/herb-city-user-service-repo/nginx:latest .
-        docker push us-west2-docker.pkg.dev/herb-city/herb-city-user-service-repo/nginx:latest
+        docker build -t us-west2-docker.pkg.dev/$GOOGLE_PROJECT/herb-city-user-service-repo/herb-city-user-service-image:latest .
+        docker push us-west2-docker.pkg.dev/herb-city/herb-city-user-service-repo/herb-city-user-service-image:latest
 
     - name: deploy to gke
       env:
