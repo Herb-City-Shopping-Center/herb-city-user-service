@@ -25,5 +25,5 @@ jobs:
         GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
       run: |
         gcloud auth configure-docker \us-west2-docker.pkg.dev
-        docker build -t us-west2-docker.pkg.dev/$GOOGLE_PROJECT/herb-city-user-service-repo/herb-city-user-service-image:latest:tag1 .
-        docker push us-west2-docker.pkg.dev/herb-city/herb-city-user-service-repo/herb-city-user-service-image:latest:tag1
+        docker build -t us-west2-docker.pkg.dev/$GOOGLE_PROJECT/herb-city-user-service-repo/herb-city-user-service-image:tag1 .
+        docker push us-west2-docker.pkg.dev/herb-city/herb-city-user-service-repo/herb-city-user-service-image:tag1
