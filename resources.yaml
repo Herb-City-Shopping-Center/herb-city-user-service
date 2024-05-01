@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: herb-city-user-service
 spec:
   type: LoadBalancer
   selector:
-    app: nginx
+    app: herb-city-user-service
   ports:
   - port: 80
     targetPort: 80
@@ -14,19 +14,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: herb-city-user-service
   labels:
-    app: nginx
+    app: herb-city-user-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: herb-city-user-service
   template:
     metadata:
       labels:
-        app: nginx
+        app: herb-city-user-service
     spec:
       containers:
-      - name: nginx
+      - name: herb-city-user-service
         image: us-west2-docker.pkg.dev/$GOOGLE_PROJECT/herb-city-user-service-repo/herb-city-user-service-image:latest
