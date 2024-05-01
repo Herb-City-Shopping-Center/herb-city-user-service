@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Expose the port that the microservice will listen on
-EXPOSE 5000
+EXPOSE 5007
 
 # Start the microservice
 CMD ["npm", "start"]
