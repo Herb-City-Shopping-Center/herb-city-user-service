@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: herb-city-user-service
+  name: herb-city-user-service-image
 spec:
   type: LoadBalancer
   selector:
-    app: herb-city-user-service
+    app: herb-city-user-service-image
   ports:
   - port: 80
     targetPort: 80
@@ -14,19 +14,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: herb-city-user-service
+  name: herb-city-user-service-image
   labels:
-    app: herb-city-user-service
+    app: herb-city-user-service-image
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: herb-city-user-service
+      app: herb-city-user-service-image
   template:
     metadata:
       labels:
-        app: herb-city-user-service
+        app: herb-city-user-service-image
     spec:
       containers:
-      - name: herb-city-user-service
+      - name: herb-city-user-service-image
         image: us-west2-docker.pkg.dev/$GOOGLE_PROJECT/herb-city-user-service-repo/herb-city-user-service-image:tag1
