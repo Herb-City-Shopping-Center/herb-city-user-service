@@ -25,5 +25,5 @@ jobs:
         GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
       run: |
         gcloud auth configure-docker us-central1-docker.pkg.dev
-        docker build -t us-west2-docker.pkg.dev/herb-city/herb-city-user-service/nginx:latest .
-        docker push us-west2-docker.pkg.dev/herb-city/herb-city-user-service/nginx:latest
+        docker build -t us-west2-docker.pkg.dev/herb-city/herb-city-user-service-repo/nginx:latest .
+        docker push us-west2-docker.pkg.dev/herb-city/herb-city-user-service-repo/nginx:latest
