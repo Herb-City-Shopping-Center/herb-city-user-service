@@ -41,8 +41,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: herb-city-user-service-ingress
-  annotations:
-    kubernetes.io/ingress.global-static-ip-name: my-static-ip
 spec:
   rules:
   - host: herb-city-user-service.com
