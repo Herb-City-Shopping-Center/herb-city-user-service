@@ -8,43 +8,12 @@ spec:
   selector:
     app: herb-city-user-service-image
   ports:
-  - name: herb-city-user-service-port
-    protocol: TCP
+  - protocol: TCP
     port: 80
     targetPort: 5007
     nodePort: 31110
-  
----
-
-apiVersion: v1
-kind: Endpoints
-metadata:
-  name: herb-city-user-service
-subsets:
-- addresses:
-  - ip: 10.0.40.1
-  ports:
-  - name: herb-city-user-service-port
-    port: 5007
-    protocol: TCP
 
 ---
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: herb-city-user-service
-spec:
-  rules:
-  - host: herb-city-user-service.com
-    http:
-      paths:
-      - backend:
-          serviceName: herb-city-user-service
-          servicePort: 80
-        path: /
-
----
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -65,4 +34,4 @@ spec:
       - name: nodeserver
         image: us-west2-docker.pkg.dev/herb-city/herb-city-user-service-repo/herb-city-user-service-image:tag
         ports:
-        - containerPort: 5007
+        - containerPort: 80
