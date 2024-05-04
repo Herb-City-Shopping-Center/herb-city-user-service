@@ -32,7 +32,7 @@ subsets:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: external-service
+  name: herb-city-user-service
 spec:
   rules:
   - host: herb-city-user-service.com
