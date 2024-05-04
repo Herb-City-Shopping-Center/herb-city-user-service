@@ -12,6 +12,8 @@ spec:
     port: 5007
     targetPort: 5007
     nodePort: 31110
+  loadBalancerIP: herb-city-user-service
+  
 ---
 apiVersion: apps/v1
 kind: Deployment
