@@ -13,8 +13,6 @@ spec:
     port: 80
     targetPort: 5007
     nodePort: 31110
-  clusterIP: None
-  type: ClusterIP
   
 ---
 
