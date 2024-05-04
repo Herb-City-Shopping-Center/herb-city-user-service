@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.send("Api is running CI/CD on google cloud");
+  res.send("Api is running for HERB CITY user service CI/CD on google cloud");
 });
 
 const server = app.listen(
