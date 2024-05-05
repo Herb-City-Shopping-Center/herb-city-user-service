@@ -1,10 +1,15 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: herb-city-user-service
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: herb-city-user-service-deployment
-  namespace: herb-city-user-service-deployment
+  namespace: herb-city-user-service
   labels:
     app: herb-city-user-service-image
 spec:
